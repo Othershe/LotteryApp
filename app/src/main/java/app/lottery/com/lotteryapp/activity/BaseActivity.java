@@ -51,7 +51,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
     }
 
-
     @Override
     protected void onDestroy() {
         mUnbinder.unbind();

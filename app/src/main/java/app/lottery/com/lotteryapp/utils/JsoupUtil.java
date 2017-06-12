@@ -23,15 +23,15 @@ public class JsoupUtil {
      */
     public static List<NewsData> parseNews(String response) {
         Document document = Jsoup.parse(response);
-        Elements elements = document.select("div[class=img_single] > a");
+        Elements elements = document.select("ul[class=clearfix] > li");
         List<NewsData> list = new ArrayList<>();
         NewsData data;
         for (Element element : elements) {
             data = new NewsData();
-//            data.setId(element.attr("href").substring(element.attr("href").lastIndexOf("/") + 1));
-//            data.setTitle(element.select("img").attr("title"));
-//            data.setUrl(element.select("img").attr("src"));
-//            list.add(data);
+            data.setUrl(element.select("span > a").attr("href"));
+            data.setTitle(element.select("span > a").text());
+            data.setTime(element.select("em").get(0).text());
+            list.add(data);
         }
 
         return list;
