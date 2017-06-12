@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    android:paddingTop="25dp"
+    tools:context="app.lottery.com.lotteryapp.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="彩票资讯"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#CCCCCC" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/radio_one"
+                style="@style/tab_redio"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:checked="true"
+                android:drawableTop="@drawable/news_drawable"
+                android:gravity="center"
+                android:text="资讯"
+                android:textColor="#F63F3F"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radio_two"
+                style="@style/tab_redio"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:drawableTop="@drawable/reault_drawable"
+                android:gravity="center"
+                android:text="开奖"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
