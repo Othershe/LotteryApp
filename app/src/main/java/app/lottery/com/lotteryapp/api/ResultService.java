@@ -11,9 +11,9 @@ import rx.Observable;
  * Time: 2017/6/12 20:56
  */
 
-public interface NewsService {
-    String BASE_URL = Apis.URL_NEWS_ITEM;
+public interface ResultService {
+    String BASE_URL = Apis.URL_RESULT_ITEM;
 
-    @GET("more_news.html")
-    Observable<String> getNewsItemData(@QueryMap Map<String, String> map);
+    @GET("50")
+    Observable<String> getResultsItemData(@QueryMap Map<String, String> map);
 }

@@ -8,8 +8,10 @@ import android.os.Parcelable;
  */
 
 public class NewsData implements Parcelable {
+    private String iconUrl;
     private String url;
     private String title;
+    private String des;
     private String time;
 
     public String getUrl() {
@@ -36,6 +38,22 @@ public class NewsData implements Parcelable {
         this.time = time;
     }
 
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -43,8 +61,10 @@ public class NewsData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.iconUrl);
         dest.writeString(this.url);
         dest.writeString(this.title);
+        dest.writeString(this.des);
         dest.writeString(this.time);
     }
 
@@ -52,8 +72,10 @@ public class NewsData implements Parcelable {
     }
 
     protected NewsData(Parcel in) {
+        this.iconUrl = in.readString();
         this.url = in.readString();
         this.title = in.readString();
+        this.des = in.readString();
         this.time = in.readString();
     }
 

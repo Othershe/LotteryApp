@@ -1,5 +1,6 @@
 package app.lottery.com.lotteryapp.activity;
 
+import android.app.Activity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -7,6 +8,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 
 import app.lottery.com.lotteryapp.R;
 import app.lottery.com.lotteryapp.data.NewsData;
@@ -24,6 +30,8 @@ public class NewsDetailActivity extends BaseActivity {
     @BindView(R.id.gank_detail_progress)
     ProgressBar mProgressBar;
 
+    private String html;
+
     @Override
     protected int initLayoutId() {
         return R.layout.activity_gank_detail;
@@ -32,12 +40,31 @@ public class NewsDetailActivity extends BaseActivity {
     @Override
     protected void initView() {
         initToolbar();
-        initWebView();
     }
 
     @Override
     protected void initData() {
         newsData = getIntent().getParcelableExtra("news_data");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Document doc = null;
+                try {
+                    doc = Jsoup.connect(newsData.getUrl()).get();
+                    ((Activity)mContext).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            initWebView();
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
     private void initWebView() {
@@ -66,7 +93,8 @@ public class NewsDetailActivity extends BaseActivity {
                 settings.setBlockNetworkImage(false);
             }
         });
-        mWebView.loadUrl(newsData.getUrl());
+//        mWebView.loadUrl(newsData.getUrl());
+        mWebView.loadDataWithBaseURL(null, html, "text/html", "utf-8", null);
     }
 
     private void initToolbar() {

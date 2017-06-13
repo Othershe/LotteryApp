@@ -13,7 +13,7 @@ import app.lottery.com.lotteryapp.activity.BaseActivity;
 import app.lottery.com.lotteryapp.adapter.TypePageAdapter;
 import app.lottery.com.lotteryapp.fragment.BaseMvpFragment;
 import app.lottery.com.lotteryapp.fragment.NewsFragment;
-import app.lottery.com.lotteryapp.fragment.ResultFragment;
+import app.lottery.com.lotteryapp.fragment.ResultsFragment;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         List<BaseMvpFragment> fragments = new ArrayList<>();
         fragments.add(NewsFragment.newInstance());
-        fragments.add(ResultFragment.newInstance());
+        fragments.add(ResultsFragment.newInstance());
 
         TypePageAdapter adapter = new TypePageAdapter(getSupportFragmentManager());
         adapter.setData(fragments);

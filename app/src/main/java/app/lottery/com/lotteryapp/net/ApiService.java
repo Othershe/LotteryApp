@@ -1,6 +1,7 @@
 package app.lottery.com.lotteryapp.net;
 
 import app.lottery.com.lotteryapp.api.NewsService;
+import app.lottery.com.lotteryapp.api.ResultService;
 
 public class ApiService {
     public static ApiService getInstance() {
@@ -12,7 +13,7 @@ public class ApiService {
     }
 
     public <S> S initService(Class<S> service) {
-        if (service.equals(NewsService.class)) {
+        if (service.equals(NewsService.class) || service.equals(ResultService.class)) {
             return NetManager.getInstance().create(service);
         }
         return null;
