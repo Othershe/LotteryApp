@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity {
         if (currentPos == 0) {
             mTitle.setText("彩票资讯");
         } else if (currentPos == 1) {
-            mTitle.setText("开奖结果");
+            mTitle.setText("双色球开奖结果");
         }
         ((RadioButton) mRadioGroup.getChildAt(lastPos)).setTextColor(Color.parseColor("#999999"));
         ((RadioButton) mRadioGroup.getChildAt(currentPos)).setChecked(true);
