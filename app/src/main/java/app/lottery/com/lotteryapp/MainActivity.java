@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.lottery.com.lotteryapp.activity.BaseActivity;
+import app.lottery.com.lotteryapp.activity.AdDetailActivity;
 import app.lottery.com.lotteryapp.activity.BaseMvpActivity;
 import app.lottery.com.lotteryapp.activity.SetActivity;
 import app.lottery.com.lotteryapp.adapter.TypePageAdapter;
@@ -77,6 +77,7 @@ public class MainActivity extends BaseMvpActivity implements AdView {
 
             }
         });
+        mViewPager.setOffscreenPageLimit(3);
 
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -139,7 +140,7 @@ public class MainActivity extends BaseMvpActivity implements AdView {
     }
 
     @Override
-    public void onSuccess(AdData data) {
+    public void onSuccess(final AdData data) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.ad_layout, null);
         ImageView close = (ImageView) view.findViewById(R.id.ad_close);
@@ -154,7 +155,11 @@ public class MainActivity extends BaseMvpActivity implements AdView {
         ad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                Intent intent = new Intent(mContext, AdDetailActivity.class);
+                intent.putExtra("ad_url", data.getAppUrl());
+                startActivity(intent);
+
+                dialog.dismiss();
             }
         });
         builder.setView(view);
