@@ -483,7 +483,7 @@ public class NewsDetailActivity extends BaseActivity {
                     html = html.replace(s4, "");
                     html = html.replace(s5, "");
                     html = html.replace(s6, "").replace(s7, "").replace(s8, "");
-                    ((Activity)mContext).runOnUiThread(new Runnable() {
+                    ((Activity) mContext).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             initWebView();

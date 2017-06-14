@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:orientation="vertical"
-    android:paddingTop="25dp"
+    android:paddingTop="@dimen/toolbar_padding_top"
     tools:context="app.lottery.com.lotteryapp.MainActivity">
 
     <LinearLayout
@@ -15,15 +15,32 @@
         android:background="#ffffff"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/title"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="彩票资讯"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:background="@color/colorAccent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:text="彩票资讯"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/setting"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/set" />
+
+        </RelativeLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -66,6 +83,17 @@
                 android:drawableTop="@drawable/reault_drawable"
                 android:gravity="center"
                 android:text="开奖"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radio_three"
+                style="@style/tab_redio"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:drawableTop="@drawable/play_drawable"
+                android:gravity="center"
+                android:text="模拟"
                 android:textColor="#999999"
                 android:textSize="12sp" />
 

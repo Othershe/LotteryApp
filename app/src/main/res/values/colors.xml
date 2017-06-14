@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#F63F3F</color>
     <color name="colorAccent">#F63F3F</color>
     <color name="white">#ffffff</color>
+    <color name="ball_red">#f74a4a</color>
+    <color name="ball_blue">#2b8be7</color>
 </resources>

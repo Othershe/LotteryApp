@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+import app.lottery.com.lotteryapp.fragment.BaseFragment;
 import app.lottery.com.lotteryapp.fragment.BaseMvpFragment;
 
 /**
@@ -13,13 +14,13 @@ import app.lottery.com.lotteryapp.fragment.BaseMvpFragment;
  * Time: 2016/8/12 16:02
  */
 public class TypePageAdapter extends FragmentPagerAdapter {
-    private List<BaseMvpFragment> fragments;
+    private List<BaseFragment> fragments;
 
     public TypePageAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    public void setData(List<BaseMvpFragment> fragments) {
+    public void setData(List<BaseFragment> fragments) {
         this.fragments = fragments;
     }
 

@@ -25,15 +25,15 @@ public class NetManager {
 
     }
 
-//    public <S> S create(Class<S> service) {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .client(getOkHttpClient())
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .baseUrl(getBaseUrl(service))
-//                .build();
-//        return retrofit.create(service);
-//    }
+    public <S> S create1(Class<S> service) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(getOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(getBaseUrl(service))
+                .build();
+        return retrofit.create(service);
+    }
 
     public <S> S create(Class<S> service) {
         Retrofit retrofit = new Retrofit.Builder()

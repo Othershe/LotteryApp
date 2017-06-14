@@ -4,4 +4,10 @@
     <string name="load_loading_tip">努力加载中</string>
     <string name="load_failed_tip">点我再试试？</string>
     <string name="load_end_tip">--end--</string>
+
+    <string name="set_app">应用</string>
+    <string name="set_cache_summary">当前缓存大小：</string>
+    <string name="set_cache_title">清除缓存</string>
+    <string name="set_splash_summary">默认关闭推送</string>
+    <string name="set_splash_title">开启推送</string>
 </resources>

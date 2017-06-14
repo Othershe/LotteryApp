@@ -67,9 +67,7 @@ public class ResultsFragment extends BaseMvpFragment implements ResultsItemView,
         resultItemAdapter.setOnItemClickListener(new OnItemClickListener<ResultData>() {
             @Override
             public void onItemClick(ViewHolder viewHolder, ResultData data, int position) {
-                Intent intent = new Intent(mActivity, NewsDetailActivity.class);
-                intent.putExtra("news_data", data);
-                mActivity.startActivity(intent);
+
             }
         });
 

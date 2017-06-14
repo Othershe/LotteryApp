@@ -1,7 +1,12 @@
 package app.lottery.com.lotteryapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -10,13 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.lottery.com.lotteryapp.activity.BaseActivity;
+import app.lottery.com.lotteryapp.activity.BaseMvpActivity;
+import app.lottery.com.lotteryapp.activity.SetActivity;
 import app.lottery.com.lotteryapp.adapter.TypePageAdapter;
-import app.lottery.com.lotteryapp.fragment.BaseMvpFragment;
+import app.lottery.com.lotteryapp.data.AdData;
+import app.lottery.com.lotteryapp.fragment.BaseFragment;
 import app.lottery.com.lotteryapp.fragment.NewsFragment;
+import app.lottery.com.lotteryapp.fragment.PlayFragment;
 import app.lottery.com.lotteryapp.fragment.ResultsFragment;
+import app.lottery.com.lotteryapp.fragment.SetFragment;
+import app.lottery.com.lotteryapp.presenter.AdPresenter;
+import app.lottery.com.lotteryapp.utils.ImageLoader;
+import app.lottery.com.lotteryapp.utils.SPUtil;
+import app.lottery.com.lotteryapp.view.AdView;
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseMvpActivity implements AdView {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
@@ -26,8 +41,16 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.title)
     TextView mTitle;
 
+    @OnClick(R.id.setting)
+    void onClick() {
+        Intent intent = new Intent(mContext, SetActivity.class);
+        startActivity(intent);
+    }
+
     private int lastPos = -1;
     private int currentPos = 0;
+
+    AlertDialog dialog;
 
     @Override
     protected int initLayoutId() {
@@ -72,20 +95,32 @@ public class MainActivity extends BaseActivity {
                         }
                         mViewPager.setCurrentItem(1);
                         break;
+                    case R.id.radio_three:
+                        if (currentPos == 2) {
+                            return;
+                        }
+                        mViewPager.setCurrentItem(2);
+                        break;
                 }
             }
         });
+
+        if ((Boolean) SPUtil.get(SetFragment.AD, false)) {
+            AdPresenter adPresenter = new AdPresenter(this);
+            addPresenter(adPresenter);
+            adPresenter.getAd();
+        }
     }
 
     @Override
     protected void initData() {
-        List<BaseMvpFragment> fragments = new ArrayList<>();
+        List<BaseFragment> fragments = new ArrayList<>();
         fragments.add(NewsFragment.newInstance());
         fragments.add(ResultsFragment.newInstance());
+        fragments.add(PlayFragment.newInstance());
 
         TypePageAdapter adapter = new TypePageAdapter(getSupportFragmentManager());
         adapter.setData(fragments);
-
         mViewPager.setAdapter(adapter);
     }
 
@@ -94,10 +129,46 @@ public class MainActivity extends BaseActivity {
             mTitle.setText("彩票资讯");
         } else if (currentPos == 1) {
             mTitle.setText("双色球开奖结果");
+        } else {
+            mTitle.setText("模拟选号");
         }
         ((RadioButton) mRadioGroup.getChildAt(lastPos)).setTextColor(Color.parseColor("#999999"));
         ((RadioButton) mRadioGroup.getChildAt(currentPos)).setChecked(true);
         ((RadioButton) mRadioGroup.getChildAt(currentPos))
                 .setTextColor(getResources().getColor(R.color.colorAccent));
+    }
+
+    @Override
+    public void onSuccess(AdData data) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.ad_layout, null);
+        ImageView close = (ImageView) view.findViewById(R.id.ad_close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        ImageView ad = (ImageView) view.findViewById(R.id.ad);
+        ImageLoader.load(mContext, data.getPicUrl(), ad);
+        ad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    protected void fetchData() {
+
     }
 }
