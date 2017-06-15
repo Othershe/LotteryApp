@@ -107,9 +107,7 @@ public class MainActivity extends BaseMvpActivity implements AdView {
         });
 
         if ((Boolean) SPUtil.get(SetFragment.AD, false)) {
-            AdPresenter adPresenter = new AdPresenter(this);
-            addPresenter(adPresenter);
-            adPresenter.getAd();
+
         }
     }
 
@@ -129,7 +127,7 @@ public class MainActivity extends BaseMvpActivity implements AdView {
         if (currentPos == 0) {
             mTitle.setText("彩票资讯");
         } else if (currentPos == 1) {
-            mTitle.setText("双色球开奖结果");
+            mTitle.setText("开奖结果");
         } else {
             mTitle.setText("模拟选号");
         }
@@ -141,30 +139,32 @@ public class MainActivity extends BaseMvpActivity implements AdView {
 
     @Override
     public void onSuccess(final AdData data) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.ad_layout, null);
-        ImageView close = (ImageView) view.findViewById(R.id.ad_close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        ImageView ad = (ImageView) view.findViewById(R.id.ad);
-        ImageLoader.load(mContext, data.getPicUrl(), ad);
-        ad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, AdDetailActivity.class);
-                intent.putExtra("ad_url", data.getAppUrl());
-                startActivity(intent);
+        if (data.getFlag() == 1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.ad_layout, null);
+            ImageView close = (ImageView) view.findViewById(R.id.ad_close);
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            ImageView ad = (ImageView) view.findViewById(R.id.ad);
+            ImageLoader.load(mContext, data.getPicUrl(), ad);
+            ad.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, AdDetailActivity.class);
+                    intent.putExtra("ad_url", data.getAppUrl());
+                    startActivity(intent);
 
-                dialog.dismiss();
-            }
-        });
-        builder.setView(view);
-        dialog = builder.create();
-        dialog.show();
+                    dialog.dismiss();
+                }
+            });
+            builder.setView(view);
+            dialog = builder.create();
+            dialog.show();
+        }
     }
 
     @Override
@@ -174,6 +174,8 @@ public class MainActivity extends BaseMvpActivity implements AdView {
 
     @Override
     protected void fetchData() {
-
+        AdPresenter adPresenter = new AdPresenter(this);
+        addPresenter(adPresenter);
+        adPresenter.getAd();
     }
 }

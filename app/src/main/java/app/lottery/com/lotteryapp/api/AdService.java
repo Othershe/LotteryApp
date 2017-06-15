@@ -8,6 +8,6 @@ import rx.Observable;
 public interface AdService {
     String BASE_URL = Apis.URL_AD;
 
-    @GET("selectIosVersion")
+    @GET("selectAndroidVersion")
     Observable<AdData> getAd();
 }
