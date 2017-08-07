@@ -94,7 +94,7 @@ public class AdDetailActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        mToolbar.setTitle("北京赛车PK10");
+        mToolbar.setTitle("");
 
         setSupportActionBar(mToolbar);
 
