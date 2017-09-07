@@ -5,14 +5,12 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.lottery.com.lotteryapp.api.NewsService;
 import app.lottery.com.lotteryapp.api.ResultService;
 import app.lottery.com.lotteryapp.net.ApiService;
 import app.lottery.com.lotteryapp.net.RxManager;
 import app.lottery.com.lotteryapp.net.RxSubscriber;
 import app.lottery.com.lotteryapp.utils.DateUtil;
 import app.lottery.com.lotteryapp.utils.JsoupUtil;
-import app.lottery.com.lotteryapp.view.NewsItemView;
 import app.lottery.com.lotteryapp.view.ResultsItemView;
 
 /**

@@ -13,6 +13,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +33,15 @@ import app.lottery.com.lotteryapp.fragment.PlayFragment;
 import app.lottery.com.lotteryapp.fragment.ResultsFragment;
 import app.lottery.com.lotteryapp.fragment.SetFragment;
 import app.lottery.com.lotteryapp.presenter.AdPresenter;
+import app.lottery.com.lotteryapp.presenter.AdPresenter1;
 import app.lottery.com.lotteryapp.utils.ImageLoader;
 import app.lottery.com.lotteryapp.utils.SPUtil;
 import app.lottery.com.lotteryapp.view.AdView;
+import app.lottery.com.lotteryapp.view.AdView1;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseMvpActivity implements AdView {
+public class MainActivity extends BaseMvpActivity implements AdView, AdView1 {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
@@ -176,8 +184,32 @@ public class MainActivity extends BaseMvpActivity implements AdView {
 
     @Override
     protected void fetchData() {
-        AdPresenter adPresenter = new AdPresenter(this);
-        addPresenter(adPresenter);
-        adPresenter.getAd();
+//        AdPresenter adPresenter = new AdPresenter(this);
+//        addPresenter(adPresenter);
+//        adPresenter.getAd();
+
+
+        AdPresenter1 presenter1 = new AdPresenter1(this);
+        addPresenter(presenter1);
+        JSONObject object = new JSONObject();
+        try {
+            object.put("jsonrpc", "2");
+            object.put("method", "lotto.monitor");
+            object.put("id", "1");
+
+            JSONObject object1 = new JSONObject();
+            object1.put("appid","com.lottery.app");
+            object.put("params", object1);
+            JsonObject obj = new Gson().fromJson(object.toString(), JsonObject.class);
+
+            presenter1.getAd(obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onSuccess(String data) {
+
     }
 }
