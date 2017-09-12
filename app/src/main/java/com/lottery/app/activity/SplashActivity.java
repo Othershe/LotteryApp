@@ -65,10 +65,18 @@ public class SplashActivity extends BaseMvpActivity implements AdView1 {
 
     @Override
     public void onSuccess(AdData1 ad) {
-        String url = ad.getResult().getWapUrl();
+        final String url = ad.getResult().getWapUrl();
         int is = ad.getResult().getShowWap();
         if (1 == is) {//跳转
-
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(mContext, MainAdActivity.class);
+                    intent.putExtra("ad_url", url);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 1000);
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -79,7 +87,5 @@ public class SplashActivity extends BaseMvpActivity implements AdView1 {
                 }
             }, 1000);
         }
-
-        finish();
     }
 }

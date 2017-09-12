@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.lottery.app.utils.SPUtil;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 public class App extends Application {
     private static Context mContext;
@@ -15,6 +17,9 @@ public class App extends Application {
 
         mContext = getApplicationContext();
         SPUtil.init(mContext, "lottery");
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     public static Context getContext() {
