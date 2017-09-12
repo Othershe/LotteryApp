@@ -8,14 +8,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:background="#000000"
-        android:layout_height="25dp"/>
+        android:layout_height="25dp"
+        android:background="#e82e2f" />
 
     <ProgressBar
         android:id="@+id/progress"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="2dp"
+        android:visibility="gone" />
 
     <WebView
         android:id="@+id/main_webview"

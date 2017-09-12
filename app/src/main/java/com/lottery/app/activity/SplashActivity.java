@@ -60,7 +60,14 @@ public class SplashActivity extends BaseMvpActivity implements AdView1 {
 
     @Override
     public void onError() {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(mContext, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 1000);
     }
 
     @Override
