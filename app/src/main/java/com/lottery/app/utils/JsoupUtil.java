@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class JsoupUtil {
     public static List<NewsData> parseNews(String response) {
 
@@ -35,14 +34,15 @@ public class JsoupUtil {
     public static List<ResultData> parseResults(String response) {
 
         Document document = Jsoup.parse(response);
-        Elements elements = document.select("table[class=historylist] > tbody > tr");
+        Elements elements = document.select("table[class=kjpage] > tbody > tr");
         List<ResultData> list = new ArrayList<>();
         ResultData data;
-        for (Element element : elements) {
+
+        for (int i = 1; i < elements.size(); i += 2) {
             data = new ResultData();
-            data.setNum(element.select("td > a").text());
-            data.setDate(element.select("td").get(1).text());
-            Elements ems = element.select("td[class=balls] em");
+
+            data.setNum(elements.get(i).select("td > strong").text());
+            Elements ems = elements.get(i).select("td > div");
             StringBuilder sb = new StringBuilder();
             for (Element em : ems) {
                 sb.append(em.text());

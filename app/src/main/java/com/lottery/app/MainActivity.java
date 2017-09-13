@@ -19,6 +19,7 @@ import com.lottery.app.data.AdData;
 import com.lottery.app.fragment.BaseFragment;
 import com.lottery.app.fragment.NewsFragment;
 import com.lottery.app.fragment.PlayFragment;
+import com.lottery.app.fragment.ResultsFragment;
 import com.lottery.app.fragment.SetFragment;
 import com.lottery.app.utils.ImageLoader;
 import com.lottery.app.utils.SPUtil;
@@ -27,7 +28,6 @@ import com.lottery.app.view.AdView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.lottery.com.lotteryapp.fragment.ResultsFragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 

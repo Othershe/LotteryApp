@@ -7,7 +7,7 @@ package com.lottery.app.constant;
 
 public class Apis {
     public static final String URL_NEWS_ITEM = "http://cai.163.com/zx/";
-    public static final String URL_RESULT_ITEM = "http://baidu.lecai.com/lottery/draw/list/";
+    public static final String URL_RESULT_ITEM = "http://tubiao.17mcp.com/Ssq/";
     public static final String URL_AD = "http://39.108.84.246:8080/";
     public static final String URL_AD1 = "http://tzxpsm.com/";
 }

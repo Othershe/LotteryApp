@@ -1,16 +1,12 @@
-package app.lottery.com.lotteryapp.fragment;
+package com.lottery.app.fragment;
 
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.lottery.app.R;
 import com.lottery.app.adapter.ResultItemAdapter;
 import com.lottery.app.data.ResultData;
-import com.lottery.app.fragment.BaseMvpFragment;
 import com.lottery.app.presenter.ResultItemPresenter;
 import com.lottery.app.view.ResultsItemView;
 import com.othershe.baseadapter.ViewHolder;

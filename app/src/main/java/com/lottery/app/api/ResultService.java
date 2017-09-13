@@ -6,6 +6,7 @@ import java.util.Map;
 
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -17,6 +18,6 @@ import rx.Observable;
 public interface ResultService {
     String BASE_URL = Apis.URL_RESULT_ITEM;
 
-    @GET("50")
-    Observable<String> getResultsItemData(@QueryMap Map<String, String> map);
+    @GET("Haoma.aspx")
+    Observable<String> getResultsItemData(@Query("page") String page);
 }
