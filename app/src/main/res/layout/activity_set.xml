@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/set_fragment"
-        class="com.lottery.app.fragment.SetFragment"
+        class="com.mylottery.appmain.fragment.SetFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.lottery.app.plays.MyGridView
+            <com.mylottery.appmain.plays.MyGridView
                 android:id="@+id/gridview_hongqiu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/darker_gray" />
 
-            <com.lottery.app.plays.MyGridView
+            <com.mylottery.appmain.plays.MyGridView
                 android:id="@+id/gridview_lanqiu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
